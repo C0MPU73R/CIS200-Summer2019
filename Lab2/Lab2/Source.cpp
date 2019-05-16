@@ -20,17 +20,34 @@ void quadraticEquation(double a, double b, double c, double &root1, double &root
 
 void bell(int a)
 {
+	while (a != 1)
+	{
+		if (a % 2 == 1)
+		{
+			throw invalid_argument("A is not a power of 2");
+		}
+		a /= 2;
+	}
 
+	cout << "ordinary value" << endl;
 }
 
 void bar(int a)
 {
-
+	if (a % 2 == 1)
+	{
+		throw invalid_argument("A cannot be odd in bar");
+	}
+	bell(a);
 }
 
 void foo(int a)
 {
-
+	if (a < 0)
+	{
+		throw invalid_argument("A cannot be negative in foo");
+	}
+	bar(a);
 }
 
 
@@ -80,6 +97,42 @@ int main() {
 		cout << e.what() << endl;
 	}
 
+
+	try
+	{
+		foo(-1);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+	try
+	{
+		foo(3);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+	try
+	{
+		foo(6);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+	try
+	{
+		foo(1024);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
 
 
 /*
