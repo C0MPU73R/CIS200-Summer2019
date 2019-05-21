@@ -4,7 +4,138 @@
 
 using namespace std;
 
+void quadraticEquation(double a, double b, double c, double &root1, double &root2)
+{
+	if (a == 0)
+	{
+		throw invalid_argument("a cannot be 0");
+	}
+	if (b*b - 4 * a * c < 0)
+	{
+		throw invalid_argument("determinant cannot be negative");
+	}
+	root1 = (-b + sqrt(b*b - 4 * a*c)) / (2 * a);
+	root2 = (-b - sqrt(b*b - 4 * a*c)) / (2 * a);
+}
+
+void bell(int a)
+{
+	while (a != 1)
+	{
+		if (a % 2 == 1)
+		{
+			throw invalid_argument("A is not a power of 2");
+		}
+		a /= 2;
+	}
+
+	cout << "ordinary value" << endl;
+}
+
+void bar(int a)
+{
+	if (a % 2 == 1)
+	{
+		throw invalid_argument("A cannot be odd in bar");
+	}
+	bell(a);
+}
+
+void foo(int a)
+{
+	if (a < 0)
+	{
+		throw invalid_argument("A cannot be negative in foo");
+	}
+	bar(a);
+}
+
+
 int main() {
+
+	double a, b, c, root1, root2;
+
+	a = 0;
+	b = 0;
+	c = 0;
+	try
+	{
+		cout << a << "x^2 + " << b << "x + " << c << endl;
+		quadraticEquation(a, b, c, root1, root2);
+		cout << " - root1: " << root1 << " - root2: " << root2 << endl;
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+	a = 1;
+	b = 2;
+	c = 8;
+	try
+	{
+		cout << a << "x^2 + " << b << "x + " << c << endl;
+		quadraticEquation(a, b, c, root1, root2);
+		cout << " - root1: " << root1 << " - root2: " << root2 << endl;
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+	a = 1;
+	b = -2;
+	c = 1;
+	try
+	{
+		cout << a << "x^2 + " << b << "x + " << c << endl;
+		quadraticEquation(a, b, c, root1, root2);
+		cout << " - root1: " << root1 << " - root2: " << root2 << endl;
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+
+	try
+	{
+		foo(-1);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+	try
+	{
+		foo(3);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+	try
+	{
+		foo(6);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+	try
+	{
+		foo(1024);
+	}
+	catch (invalid_argument &e)
+	{
+		cout << e.what() << endl;
+	}
+
+
+/*
 	Vector test(10);
 	Vector *vecPtr;
 	Vector exam(5);
@@ -51,7 +182,7 @@ int main() {
 	for (int i = 0; i < exam.getSize(); i++)
 		cout << exam[i] << " ";
 	cout << endl;
-
+*/
 	system("pause");
 
 	return 0;
