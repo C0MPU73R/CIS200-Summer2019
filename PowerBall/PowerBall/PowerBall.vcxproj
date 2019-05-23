@@ -118,7 +118,6 @@
     <ClInclude Include="PowerBallTicket.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PowerBallTicket.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
