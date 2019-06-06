@@ -65,18 +65,21 @@ void convertIntegerToBinaryWithQueue(int number)
 	// first in should be 2^30
 	// last in should be 2^0
 
+	int workingNumber = number;
 	for (int exponent = 30; exponent >= 0; exponent--)
 	{
-		if (number >= pow(2, exponent))
+		if (number > pow(2, exponent))
 		{
-			if (number / pow(2, exponent) == 0)
-			{
-				binaryDigits.push('0');
-			}
-			else
+			if (workingNumber >= pow(2, exponent))
 			{
 				binaryDigits.push('1');
 			}
+			else
+			{
+				binaryDigits.push('0');
+			}
+
+			workingNumber %= int(pow(2, exponent));
 		}
 	}
 
@@ -111,9 +114,8 @@ int main()
 	cout << sortedNumbers << endl;
 
 	convertNumberWithQueueAndStack(0);
-
 	convertNumberWithQueueAndStack(255);
-
+	convertNumberWithQueueAndStack(1111);
 	convertNumberWithQueueAndStack(2147483647);
 
 	system("pause");
