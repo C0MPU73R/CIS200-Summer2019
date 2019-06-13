@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -49,29 +50,79 @@ int fibIteratively(int nthTerm)
 }
 
 
-class EightQueens
+class NQueens
 {
 private:
 	static const char QUEEN = 'Q';
 	static const char SPACE = ' ';
-	
+
 	int numberOfQueensOnBoard;
-	char board[8][8];
+	vector<vector<char>> board;
 	bool solved;
-	
+	int size;
+	int numberOfSolutions;
+
 	bool canPutQueenOnRow(int row)
 	{
-
+		for (int column = 0; column < numberOfQueensOnBoard; column++)
+		{
+			if (board[row][column] == QUEEN)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 	bool canPutQueenOnColumn(int column)
 	{
-
+		// we are only ever putting queens 1 column at a time in our Solve method
+		/*for (int row = 0; row < 8; row++)
+		{
+			if (board[row][column] == QUEEN)
+			{
+				return false;
+			}
+		}*/
+		return true;
 	}
+
+	bool isDiagonalUpSafe(int row, int column)
+	{
+		// row-- column-- each time
+		// row >= 0, column >= 0
+		while (row >= 0 && column >= 0)
+		{
+			if (board[row][column] == QUEEN)
+			{
+				return false;
+			}
+			row--;
+			column--;
+		}
+		return true;
+	}
+
+	bool isDiagonalDownSafe(int row, int column)
+	{
+		// row++ column-- each time
+		// row < 8, column >= 0
+		while (row < size && column >= 0)
+		{
+			if (board[row][column] == QUEEN)
+			{
+				return false;
+			}
+			row++;
+			column--;
+		}
+		return true;
+	}
+
 	bool canPutQueenOnDiagonal(int row, int column)
 	{
-
+		return isDiagonalUpSafe(row, column) && isDiagonalDownSafe(row, column);
 	}
-	
+
 	bool canPutQueen(int row, int column)
 	{
 		return canPutQueenOnRow(row) && canPutQueenOnColumn(column) && canPutQueenOnDiagonal(row, column);
@@ -80,13 +131,16 @@ private:
 
 
 public:
-	EightQueens()
+	NQueens(int size = 8)
 	{
+		this->size = size;
+		numberOfSolutions = 0;
 		numberOfQueensOnBoard = 0;
 		solved = false;
-		for (int row = 0; row < 8; row++)
+		for (int row = 0; row < size; row++)
 		{
-			for (int column = 0; column < 8; column++)
+			board.push_back(vector<char>(size));
+			for (int column = 0; column < size; column++)
 			{
 				board[row][column] = SPACE;
 			}
@@ -95,32 +149,43 @@ public:
 
 	void print()
 	{
-		cout << "-----------------" << endl;
-		for (int row = 0; row < 8; row++)
+		for (int dash = 0; dash < size; dash++)
 		{
-			for (int column = 0; column < 8; column++)
+			cout << "--";
+		}
+		cout << "-" << endl;
+		for (int row = 0; row < size; row++)
+		{
+			for (int column = 0; column < size; column++)
 			{
 				cout << "|";
 				cout << board[row][column];
 			}
-			cout << "|";
-			cout << endl << "-----------------" << endl;
+			cout << "|" << endl;
+			for (int dash = 0; dash < size; dash++)
+			{
+				cout << "--";
+			}
+			cout << "-" << endl;
 		}
 	}
 
 	void solve()
 	{
-		if (numberOfQueensOnBoard == 8)
+		if (numberOfQueensOnBoard == size)
 		{
-			solved = true;
+			//solved = true;
+			numberOfSolutions++;
+			cout << "Solution #" << numberOfSolutions << endl;
 			print();
+			cout << endl << endl;
 		}
 
 		if (!solved)
 		{
-			for (int row = 0; row < 8; row++)
+			for (int row = 0; row < size; row++)
 			{
-				if (canPutQueen(row, numberOfQueensOnBoard) )
+				if (canPutQueen(row, numberOfQueensOnBoard))
 				{
 					board[row][numberOfQueensOnBoard] = QUEEN;
 					numberOfQueensOnBoard++;
@@ -140,8 +205,8 @@ public:
 
 int main()
 {
-	EightQueens eightQueens;
-	eightQueens.print();
+	NQueens nQueens(8);
+	nQueens.solve();
 	/*for (int number = 1; number < 50; number++)
 	{
 		cout << fib(number) << endl;
