@@ -2,10 +2,11 @@
 #include <string>
 #include "SortedValues.h"
 #include "BetterSortedItems.h"
+#include "LinkedList.h"
 
 int main()
 {
-	SortedItems<int> sortedInts;
+	/*SortedItems<int> sortedInts;
 	sortedInts.Add(10);
 	sortedInts.Add(6);
 	sortedInts.Add(42);
@@ -17,7 +18,7 @@ int main()
 	sortedChars.Add('T');
 	sortedChars.Add('A');
 	sortedChars.Add('N');
-	
+
 	sortedChars.Print();
 
 
@@ -35,8 +36,21 @@ int main()
 	{
 		numbers.Add(rand());
 	}
-	
-	numbers.Print();
+
+	numbers.Print();*/
+
+	LinkedList<int> linkedInts;
+
+	linkedInts.Add(5);
+	linkedInts.Add(7);
+	linkedInts.Add(11);
+	linkedInts.Add(13);
+
+	for (int index = 0; index < linkedInts.size(); index++)
+	{
+		cout << linkedInts.at(index) << endl;
+	}
+
 
 	system("pause");
 	return 0;

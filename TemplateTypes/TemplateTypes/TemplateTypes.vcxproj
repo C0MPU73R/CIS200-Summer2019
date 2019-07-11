@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BetterSortedItems.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="SortedValues.h" />
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,7 @@ private:
 	}
 	void checkCapacity()
 	{
-		if (numberOfItems == currentStorageSize)
+		/*if (numberOfItems == currentStorageSize)
 		{
 			T temp[currentStorageSize];
 			
@@ -33,7 +33,7 @@ private:
 			{
 				items[index] = temp[index];
 			}
-		}
+		}*/
 	}
 public:
 	BetterSortedItems()
