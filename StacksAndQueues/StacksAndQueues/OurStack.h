@@ -11,7 +11,7 @@ private:
 public:
 	OurStack()
 	{
-
+		items = LinkedList<T>();
 	}
 
 	void push(T data)

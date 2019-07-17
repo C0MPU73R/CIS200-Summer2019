@@ -17,26 +17,26 @@ int main()
 		numbers.pop();
 	}
 
-	OurStack<OurStack<char>> *letters = new OurStack<OurStack<char>>();
+	OurStack<OurStack<char>> letters;
 
-	for (int stackNumber = 0; stackNumber < 5; stackNumber++)
+	for (int stackNumber = 1; stackNumber <= 5; stackNumber++)
 	{
-		OurStack<char> *newStack = new OurStack<char>();
-		letters->push(*newStack);
-		for (int letter = 65; letter < 65 + 26; letter + stackNumber)
+		OurStack<char> newStack;
+		letters.push(newStack);
+		for (int letter = 65; letter < 65 + 26; letter += stackNumber)
 		{
-			letters->peek().push(letter);
+			letters.peek().push(letter);
 		}
 	}
 
-	while (!letters->isEmpty())
+	while (!letters.isEmpty())
 	{
-		while (!letters->peek().isEmpty())
+		while (!letters.peek().isEmpty())
 		{
-			cout << letters->peek().peek() << endl;
-			letters->peek().pop();
+			cout << letters.peek().peek() << endl;
+			letters.peek().pop();
 		}
-		letters->pop();
+		letters.pop();
 	}
 
 
