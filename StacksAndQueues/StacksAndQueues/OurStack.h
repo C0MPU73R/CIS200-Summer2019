@@ -9,16 +9,6 @@ class OurStack
 private:
 	LinkedList<T> items;
 public:
-	OurStack()
-	{
-		items = LinkedList<T>();
-	}
-
-	OurStack(const OurStack& rhs)
-	{
-		items = rhs.items;
-	}
-
 	void push(T data)
 	{
 		items.addToFront(data);
