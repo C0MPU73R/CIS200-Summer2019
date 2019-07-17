@@ -14,6 +14,11 @@ public:
 		items = LinkedList<T>();
 	}
 
+	OurStack(const OurStack& rhs)
+	{
+		items = rhs.items;
+	}
+
 	void push(T data)
 	{
 		items.addToFront(data);

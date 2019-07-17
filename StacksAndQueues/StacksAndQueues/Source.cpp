@@ -22,19 +22,20 @@ int main()
 	for (int stackNumber = 1; stackNumber <= 5; stackNumber++)
 	{
 		OurStack<char> newStack;
-		letters.push(newStack);
 		for (int letter = 65; letter < 65 + 26; letter += stackNumber)
 		{
-			letters.peek().push(letter);
+			newStack.push(letter);
 		}
+		letters.push(newStack);
 	}
 
 	while (!letters.isEmpty())
 	{
-		while (!letters.peek().isEmpty())
+		OurStack<char> stack = letters.peek();
+		while (!stack.isEmpty())
 		{
-			cout << letters.peek().peek() << endl;
-			letters.peek().pop();
+			cout << stack.peek() << endl;
+			stack.pop();
 		}
 		letters.pop();
 	}

@@ -31,6 +31,63 @@ public:
 		numberOfItems = 0;
 	}
 
+	LinkedList& operator=(const LinkedList& rhs)
+	{
+		if (this != &rhs)
+		{
+			head = nullptr;
+			tail = nullptr;
+			numberOfItems = 0;
+
+			Node<T> *rhsCurrentNode = rhs.head;
+
+			if (rhsCurrentNode != nullptr)
+			{
+				Node<T> *currentNode = new Node<T>(rhsCurrentNode->data);
+				head = currentNode;
+				tail = currentNode;
+				numberOfItems++;
+
+				while (rhsCurrentNode->next != nullptr)
+				{
+					currentNode->next = new Node<T>(rhsCurrentNode->next->data);
+					currentNode = currentNode->next;
+					rhsCurrentNode = rhsCurrentNode->next;
+					tail = currentNode;
+					numberOfItems++;
+				}
+			}
+		}
+
+		return *this;
+	}
+
+	LinkedList(const LinkedList& rhs)
+	{
+		head = nullptr;
+		tail = nullptr;
+		numberOfItems = 0;
+
+		Node<T> *rhsCurrentNode = rhs.head;
+
+		if (rhsCurrentNode != nullptr)
+		{
+			Node<T> *currentNode = new Node<T>(rhsCurrentNode->data);
+			head = currentNode;
+			tail = currentNode;
+			numberOfItems++;
+
+			while (rhsCurrentNode->next != nullptr)
+			{
+				currentNode->next = new Node<T>(rhsCurrentNode->next->data);
+				currentNode = currentNode->next;
+				rhsCurrentNode = rhsCurrentNode->next;
+				tail = currentNode;
+				numberOfItems++;
+			}
+		}
+	}
+
 	~LinkedList()
 	{
 		if (numberOfItems > 0)
@@ -62,6 +119,10 @@ public:
 	void addToFront(T data)
 	{
 		Node<T> *newNode = new Node<T>(data, head);
+		if (head == nullptr)
+		{
+			tail = newNode;
+		}
 		head = newNode;
 		numberOfItems++;
 	}
