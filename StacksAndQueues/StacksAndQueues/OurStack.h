@@ -7,35 +7,30 @@ template <typename T>
 class OurStack
 {
 private:
-	LinkedList<T> *items;
+	LinkedList<T> items;
 public:
 	OurStack()
 	{
-		items = new LinkedList<T>();
-	}
 
-	~OurStack()
-	{
-		delete items;
 	}
 
 	void push(T data)
 	{
-		items->addToFront(data);
+		items.addToFront(data);
 	}
 
 	T peek()
 	{
-		return items->at(0);
+		return items.at(0);
 	}
 
 	void pop()
 	{
-		items->remove(0);
+		items.remove(0);
 	}
 
 	bool isEmpty()
 	{
-		return items->isEmpty();
+		return items.isEmpty();
 	}
 };
