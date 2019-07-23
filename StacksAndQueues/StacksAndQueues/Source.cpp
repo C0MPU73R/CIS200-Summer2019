@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "OurStack.h"
+#include "OurQueue.h"
 
 int main()
 {
@@ -38,6 +39,20 @@ int main()
 			stack.pop();
 		}
 		letters.pop();
+	}
+
+	OurQueue<float> floats;
+
+	floats.enqueue(1.1);
+	floats.enqueue(2.3);
+	floats.enqueue(4.5);
+	floats.enqueue(6.7);
+	floats.enqueue(8.9);
+
+	while (!floats.isEmpty())
+	{
+		cout << floats.front() << endl;
+		floats.dequeue();
 	}
 
 

@@ -127,6 +127,23 @@ public:
 		numberOfItems++;
 	}
 
+	void addToBack(T data)
+	{
+		Node<T> *newNode = new Node<T>(data);
+		if (tail == nullptr)
+		{
+			tail = newNode;
+			head = newNode;
+		}
+		else
+		{
+			tail->next = newNode;
+			tail = tail->next;
+		}
+
+		numberOfItems++;
+	}
+
 	void remove(int index)
 	{
 		if (index >= numberOfItems)
